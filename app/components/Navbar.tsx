@@ -3,12 +3,26 @@
 import Link from "next/link";
 import { Heart } from "lucide-react";
 import { useRouter } from "next/navigation";
+import {
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
+import { WishlistContext } from "../context/WishListContext";
+import { useContext } from "react";
+
 
 const Navbar = () => {
-  const router = useRouter()
+  const router = useRouter();
+  const {wishlist} = useContext(WishlistContext)
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between border-b border-gray-200 bg-white/90 backdrop-blur-md px-6 py-3 lg:px-20 ">
-      <div className="flex items-center gap-3">
+    <header className="sticky top-0 z-50 flex items-center justify-between border-b border-gray-200 bg-white/60 backdrop-blur-md px-6 py-3 lg:px-20 ">
+      <div
+        className="flex items-center gap-3 cursor-pointer"
+        onClick={() => router.push("/")}
+      >
         <div className="size-8 text-red-500">
           <svg
             fill="currentColor"
@@ -19,38 +33,38 @@ const Navbar = () => {
           </svg>
         </div>
 
-        <h2 className="text-xl font-bold tracking-tight text-gray-900 ">
+        <h2 className="text-2xl font-extrabold tracking-tight text-gray-900 ">
           Books Explorer
         </h2>
       </div>
 
-      {/* <nav className="hidden md:flex flex-1 justify-center gap-8">
-        <Link className="text-sm font-semibold text-red-500" href="/">
-          Home
-        </Link>
-
-        <Link
-          className="text-sm font-medium text-gray-700 hover:text-red-800 dark:text-gray-300 dark:hover:text-red-400 transition-colors"
-          href="#"
-        >
-          My Library
-        </Link>
-
-        <Link
-          className="text-sm font-medium text-gray-700 hover:text-red-500 dark:text-gray-300 dark:hover:text-red-400 transition-colors"
-          href="#"
-        >
-          WishList
-        </Link>
-      </nav> */}
 
       <div className="flex items-center gap-4">
-        <button onClick={()=>router.push('/wishList')}>
+        <button
+          onClick={() => router.push("/wishList")}
+          title="WishList"
+          className="relative border border-gray-300 rounded-4xl p-2"
+        >
           <Heart className="text-gray-400 hover:text-red-500 hover:fill-red-500 transition-colors duration-300" />
+          <span className="absolute -top-2 -right-1 bg-red-500 text-white text-[10px] font-bold rounded-full h-5 w-5 flex items-center justify-center">
+            {wishlist.length}
+          </span>
         </button>
-        <button className="hidden md:flex h-10 min-w-[84px] cursor-pointer items-center justify-center rounded-full px-5 bg-red-500 text-white text-sm font-bold shadow-sm hover:bg-red-600 transition-colors">
-          Log In
-        </button>
+
+        {/* <button className="hidden md:flex h-10 min-w-[84px] cursor-pointer items-center justify-center rounded-full px-5 bg-red-500 text-white text-sm font-bold shadow-sm hover:bg-red-600 transition-colors">
+          Sign in
+        </button> */}
+        <SignedOut>
+          <SignInButton />
+          <SignUpButton>
+            <button className="bg-red-500 text-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
+              Sign Up
+            </button>
+          </SignUpButton>
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
       </div>
     </header>
   );

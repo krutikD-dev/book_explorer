@@ -1,38 +1,55 @@
-import recommended from "@/app/data/recommended.json";
+"use client";
+
+import { useState,useEffect } from "react";
 import SectionHeading from "./SectionHeading";
 import BookCard from "./BookCard";
+import LoadMoreButton from "./LoadMore";
 import { getRecommendedBooks } from "../lib/getRecommendedBooks";
+import CardSkeleton from "./CardSkeleton";
 
+export default function RecommendationSection() {
+  const [books, setBooks] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(false)
+  const [initialLoading, setInitialLoading] = useState<boolean>(false)
+  const [startIndex, setStartIndex] = useState(0);
 
+  useEffect(() => {
+    async function loadInitial() {
+      setInitialLoading(true)
+      const data = await getRecommendedBooks(startIndex);
+      setBooks(data);
+      setStartIndex(12);
+      setInitialLoading(false)
+    }
+    loadInitial();
+  }, []);
 
-export default async function RecommendationSection() {
+  const loadMore = async () => {
+    setLoading(true)
+    const more = await getRecommendedBooks(startIndex);
+    setBooks((prev) => [...prev, ...more]);
+    setStartIndex(startIndex + 12);
+    setLoading(false)
+  };
 
-  const recommendedBookData = await getRecommendedBooks()
-  const recommendedBook = recommendedBookData.map((item: any) => ({
-      id: item.id,
-      title: item.volumeInfo.title,
-      author: item.volumeInfo.authors?.[0] || "Unknown",
-      image:
-        item.volumeInfo.imageLinks?.thumbnail ||
-        "/placeholder-book.jpg",
-      rating: item.volumeInfo.averageRating || null,
-    })) ?? [];
-  
   return (
     <section className="mt-14">
-      <SectionHeading title="Recommended Reads" linkText={undefined} link={undefined} />
+      <SectionHeading title="Recommended Reads" />
+      
+      {initialLoading && <div className=" justify-center mt-10"><CardSkeleton/></div>}
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-5">
-        {recommendedBook.map((book:any) => (
-          <BookCard key={book.id} book={book} />
+      {!initialLoading && <div className="grid sm:grid-cols-1 justify-center md:grid-cols-3 md:ml-3 lg:grid-cols-4 gap-6 mt-5">
+        {books.map((book: any,index) => (
+          <BookCard key={book.id + "-" + index} book={book} />
         ))}
-      </div>
+      </div>}
 
-      <div className="flex justify-center mt-8">
-        <button className="px-6 py-2 bg-gray-200 rounded-md hover:bg-gray-300">
-          Load More Books
-        </button>
-      </div>
+     {!loading && <div className="flex justify-center my-8">
+        <LoadMoreButton onClick={loadMore} />
+      </div>}
+      {loading && <div className="justify-center my-8">
+        <CardSkeleton/>
+      </div>}
     </section>
   );
 }

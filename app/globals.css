@@ -20,11 +20,11 @@
 } */
 
 body {
-  background: var(--background);
+  background-color: #eeeded;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
 
 .no-scrollbar::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
 }

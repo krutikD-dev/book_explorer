@@ -7,7 +7,7 @@ export async function getBookById(id: string) {
 
   const json = await res.json();
 
-  return json.volumeInfo 
+  return json
 
   
 }

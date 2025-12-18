@@ -4,16 +4,7 @@ import { getTrendingBooks } from "../lib/getTrendingBooks";
 
 export default async function TrendingSection() {
 
-  const trendingBooksData = await getTrendingBooks()
-  const trendingBooks =trendingBooksData.map((item: any) => ({
-      id: item.id,
-      title: item.volumeInfo.title,
-      author: item.volumeInfo.authors?.[0] || "Unknown",
-      image:
-        item.volumeInfo.imageLinks?.thumbnail ||
-        "",
-      rating: item.volumeInfo.averageRating || null,
-    })) || [];
+  const trendingBooks = await getTrendingBooks()
 
   return (
     <section className="mt-14">

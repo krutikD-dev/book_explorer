@@ -15,11 +15,11 @@ export default async function CategoryPage({ params }: { params: { name: string 
         {formattedCategory} Books
       </h1>
 
-      {books.length === 0 ? (
+      {books?.length === 0 ? (
         <p className="text-gray-500">No books found in this category.</p>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {books.map((book) => (
+          {books?.map((book) => (
             <BookCard key={book.id} book={book} />
           ))}
         </div>

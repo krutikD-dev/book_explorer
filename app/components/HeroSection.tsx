@@ -3,7 +3,7 @@ import SearchBar from "./Searchbar";
 export default function HeroSection() {
   return (
     <section
-      className="relative w-full h-[380px] bg-cover bg-center flex flex-col justify-center items-center text-white"
+      className="relative w-full h-[550px] bg-cover bg-center flex flex-col justify-center items-center text-white"
       style={{ backgroundImage: "url('https://thumbs.dreamstime.com/b/library-many-shelves-books-library-many-shelves-books-diminishing-perspective-shallow-dof-159717386.jpg')" }}
     >
       
