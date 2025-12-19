@@ -6,7 +6,7 @@
       const query = "best seller books";
       // console.log(process.env.GOOGLE_BOOKS_API_KEY)
       const res = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=12&key=${process.env.GOOGLE_BOOKS_API_KEY}`);
+        `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=12&key=${process.env.NEXT_PUBLIC_GOOGLE_BOOKS_API_KEY}`);
 
       if (!res.ok) throw new Error("Failed to fetch trending books");
 

@@ -26,6 +26,7 @@ export default function SearchPage() {
     const fetchData = async () => {
       setInitialLoading(true);
       const { items, total } = await searchBooks(query);
+      // console.log(items)
 
       setResults(items);
       setTotal(total);

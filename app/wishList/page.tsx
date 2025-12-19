@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { WishlistContext } from "../context/WishListContext";
 import Link from "next/link";
 import BookCard from "../components/BookCard";
+import { Book } from "../types/Books";
 
 export default function WishlistPage() {
   const { wishlist, removeFromWishlist } = useContext(WishlistContext);
@@ -24,7 +25,7 @@ export default function WishlistPage() {
       <h1 className="text-3xl font-bold mb-6">My Wishlist</h1>
 
       <div className="grid sm:grid-col-1 md:grid-cols-3 lg:grid-cols-4 gap-6 justify-center mt-6">
-        {wishlist.map((book: any, index) => (
+        {wishlist.map((book:Book, index:number) => (
           <BookCard key={book.id+'-'+index} book={book}/>
         ))}
       </div>
