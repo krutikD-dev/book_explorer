@@ -3,14 +3,16 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Search } from "lucide-react";
+import React from "react";
 
-export default function SearchInput() {
-  const [searchTerm, setSearchTerm] = useState<string>('');
-  const router = useRouter();
+function SearchInput({initialValue}:{initialValue:string}) {
+  console.log(initialValue)
+  const [searchTerm, setSearchTerm] = useState<string>(initialValue)
+  const router = useRouter()
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    router.push(`/search?q=${searchTerm}`);
+    router.push(`/search?q=${searchTerm}`)
   };
 
   return (
@@ -19,9 +21,10 @@ export default function SearchInput() {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         className="w-full bg-white border rounded-full px-5 py-3 shadow-sm focus:outline-none"
-        placeholder="Design Systems..."
+        placeholder="Harry Potter..."
       />
       <Search className="absolute right-4 top-3 text-gray-400" />
     </form>
   );
 }
+export default React.memo(SearchInput)

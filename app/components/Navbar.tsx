@@ -12,6 +12,7 @@ import {
 } from "@clerk/nextjs";
 import { WishlistContext } from "../context/WishListContext";
 import { useContext } from "react";
+import React from "react";
 
 
 const Navbar = () => {
@@ -39,7 +40,7 @@ const Navbar = () => {
       </div>
 
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-8">
         <button
           onClick={() => router.push("/wishList")}
           title="WishList"
@@ -63,11 +64,13 @@ const Navbar = () => {
           </SignUpButton>
         </SignedOut>
         <SignedIn>
-          <UserButton />
+          <div className="flex border border-gray-200 justify-center items-center p-2 rounded-full">
+            <UserButton/>
+          </div>
         </SignedIn>
       </div>
     </header>
   );
 };
 
-export default Navbar;
+export default React.memo(Navbar);

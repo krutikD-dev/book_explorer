@@ -1,3 +1,4 @@
+import React from "react"
 
 
 const CardSkeleton = () => {
@@ -14,4 +15,4 @@ const CardSkeleton = () => {
   )
 }
 
-export default CardSkeleton
+export default React.memo(CardSkeleton)

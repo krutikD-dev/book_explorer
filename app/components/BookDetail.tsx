@@ -1,10 +1,12 @@
 "use client";
 
 import { BookCheck, BookOpenCheck, CalendarCheck, Heart } from "lucide-react";
+import React from 'react'
 import { useContext } from "react";
 import { WishlistContext } from "../context/WishListContext";
+import { Book } from "../types/Books";
 
-export default function BookDetail({ book }) {
+function BookDetail({ book }:{book:Book}) {
   
   const { addToWishlist, removeFromWishlist, isInWishlist } =
     useContext(WishlistContext);
@@ -119,3 +121,4 @@ export default function BookDetail({ book }) {
     </>
   );
 }
+export default React.memo(BookDetail)

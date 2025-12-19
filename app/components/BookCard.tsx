@@ -1,6 +1,7 @@
 import Link from "next/link";
+import React from "react";
 
-export default function BookCard({ book }:unknown) {
+ function BookCard({ book }:{book:any}) {
   return (
     <Link
       href={`/book/${book.id}`}
@@ -18,3 +19,4 @@ export default function BookCard({ book }:unknown) {
     </Link>
   );
 }
+export default React.memo(BookCard)

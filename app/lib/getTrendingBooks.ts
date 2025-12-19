@@ -4,7 +4,7 @@
 
     try {
       const query = "best seller books";
-
+      // console.log(process.env.GOOGLE_BOOKS_API_KEY)
       const res = await fetch(
         `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=12&key=${process.env.GOOGLE_BOOKS_API_KEY}`);
 

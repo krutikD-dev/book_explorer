@@ -1,6 +1,7 @@
 import { MoveDown } from "lucide-react";
+import React from "react";
 
-export default function LoadMoreButton({ onClick }: any) {
+function LoadMoreButton({ onClick }: any) {
   return (
     <button
       onClick={onClick}
@@ -10,3 +11,4 @@ export default function LoadMoreButton({ onClick }: any) {
     </button>
   );
 }
+export default React.memo(LoadMoreButton)

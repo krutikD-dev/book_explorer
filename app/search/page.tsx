@@ -39,7 +39,7 @@ export default function SearchPage() {
   const loadMore = async () => {
     setLoading(true);
     const more = await searchBooks(query, startIndex);
-    setResults((prev) => [...prev, ...more.items]);
+    setResults((prev) => [...prev, ...more?.items]);
     setStartIndex(startIndex + 12);
     setLoading(false)
   };
@@ -59,6 +59,7 @@ export default function SearchPage() {
 
       {initialLoading && (
         <div className="justify-center mt-10">
+          <CardSkeleton />
           <CardSkeleton />
         </div>
       )}

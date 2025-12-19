@@ -1,6 +1,7 @@
+import React from "react";
 import SearchBar from "./Searchbar";
 
-export default function HeroSection() {
+ function HeroSection() {
   return (
     <section
       className="relative w-full h-[550px] bg-cover bg-center flex flex-col justify-center items-center text-white"
@@ -25,3 +26,4 @@ export default function HeroSection() {
     </section>
   );
 }
+export default HeroSection

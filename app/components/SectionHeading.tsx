@@ -1,6 +1,7 @@
 import Link from "next/link";
+import React from "react";
 
-export default function SectionHeading({ title, linkText, link }:any) {
+function SectionHeading({ title, linkText, link }:any) {
   return (
     <div className="flex justify-between items-center mb-5">
       <h2 className="text-3xl font-semibold">{title}</h2>
@@ -13,3 +14,4 @@ export default function SectionHeading({ title, linkText, link }:any) {
     </div>
   );
 }
+export default React.memo(SectionHeading)

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import React from "react";
 
 const categories = [
   "Fiction",
@@ -9,7 +10,7 @@ const categories = [
   "Fantasy",
 ];
 
-export default function CategoryTabs() {
+function CategoryTabs() {
   return (
     <section className="mt-14">
       <h2 className="text-3xl font-semibold mb-4">Browse by Category</h2>
@@ -28,3 +29,4 @@ export default function CategoryTabs() {
     </section>
   );
 }
+export default React.memo(CategoryTabs)

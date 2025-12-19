@@ -1,8 +1,8 @@
 "use client";
 
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
-export const WishlistContext = createContext<any>(null);
+export const WishlistContext = createContext<any>([]);
 
 export function WishlistProvider({ children }: { children: React.ReactNode }) {
   const [wishlist, setWishlist] = useState<any[]>([]);
