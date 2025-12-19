@@ -326,10 +326,6 @@ The app focuses on **clean UI, smooth UX, and performance**, featuring dynamic s
 ### ⚡ Performance & UX Optimizations
 
 -> Skeleton loaders instead of spinners  
--> Client-side pagination without layout shift  
--> Optimized data fetching via API route handlers  
--> Avoids exposing API keys on client  
--> Suspense boundaries for CSR bailouts  
 
 ---
 
