@@ -1,5 +1,6 @@
 import { getBooksByCategory } from "@/app/lib/getBookByCategory";
 import BookCard from "@/app/components/BookCard";
+import { Book } from "@/app/types/Books";
 
 export default async function CategoryPage({ params }: { params: { name: string } }) {
   const category = await params;
@@ -19,7 +20,7 @@ export default async function CategoryPage({ params }: { params: { name: string 
         <p className="text-gray-500">No books found in this category.</p>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {books?.map((book) => (
+          {books?.map((book:Book) => (
             <BookCard key={book.id} book={book} />
           ))}
         </div>

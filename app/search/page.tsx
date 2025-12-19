@@ -4,10 +4,10 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { searchBooks } from "@/app/lib/searchBooks";
 import SearchInput from "@/app/components/SearchInput";
-import SortDropdown from "@/app/components/SortDropDown";
+import SortDropDown from "@/app/components/SortDropDown";
 import BookCard from "@/app/components/BookCard";
 import LoadMore from "@/app/components/LoadMore";
-import CardSkeleton from "../components/CardSkeleton";
+import CardSkeleton from "@/app/components/CardSkeleton";
 
 export default function SearchPage() {
   const params = useSearchParams();
@@ -49,7 +49,7 @@ export default function SearchPage() {
       <SearchInput initialValue={query} />
 
       <div className="flex justify-end items-center mt-6">
-        <SortDropdown />
+        <SortDropDown />
       </div>
 
       <p className="mt-4 text-gray-600">

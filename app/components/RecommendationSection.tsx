@@ -5,7 +5,7 @@ import SectionHeading from "./SectionHeading";
 import BookCard from "./BookCard";
 import LoadMoreButton from "./LoadMore";
 import { getRecommendedBooks } from "../lib/getRecommendedBooks";
-import CardSkeleton from "./CardSkeleton";
+import CardSkeleton from "@/app/components/CardSkeleton";
 
 export default function RecommendationSection() {
   const [books, setBooks] = useState<any[]>([]);

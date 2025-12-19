@@ -1,6 +1,8 @@
+"use client"
+
 import { ChevronDown } from "lucide-react";
 
-export default function SortDropdown() {
+export default function SortDropDown() {
   return (
     <div className="flex items-center gap-2 text-sm">
       Sort by:

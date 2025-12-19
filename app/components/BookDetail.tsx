@@ -25,7 +25,7 @@ function BookDetail({ book }:{book:Book}) {
         <div>
           <img
             src={book.volumeInfo.imageLinks?.thumbnail || book.volumeInfo.imageLinks?.small}
-            alt={book.title}
+            alt={book.volumeInfo.title}
             className="rounded-2xl w-full object-cover shadow-md"
           />
           <button className="bg-red-500 text-white flex border-none rounded-lg px-4 py-3 gap-2 font-bold w-full justify-center mt-4" onClick={toggleWishlist}>
@@ -39,10 +39,10 @@ function BookDetail({ book }:{book:Book}) {
         </div>
 
         <div className="md:col-span-2">
-          <h1 className="text-5xl mt-5 font-extrabold">{book.volumeInfo.title}</h1>
+          <h1 className="text-5xl mt-5 font-extrabold">{book.volumeInfo?.title}</h1>
 
           <span className="text-lg text-red-500 font-medium mt-6 ml-2">
-            by {book.volumeInfo.authors || "unknown"}
+            by {book.volumeInfo?.authors || "unknown"}
           </span>
 
           <div className="grid grid-cols-3 gap-6 mt-9">
@@ -98,14 +98,14 @@ function BookDetail({ book }:{book:Book}) {
             </p>
           </div>
 
-          {book.volumeInfo.categories?.length > 0 && (
+          {book.volumeInfo?.categories?.length && (
             <div className="mt-10">
               <h3 className="text-lg text-gray-500 uppercase tracking-wide">
                 Tag
               </h3>
 
               <div className="flex flex-wrap gap-3 mt-3">
-                {book.volumeInfo.categories.map((cat: string) => (
+                {book.volumeInfo?.categories && book.volumeInfo?.categories.map((cat: string) => (
                   <span
                     key={cat}
                     className="px-4 py-1 bg-gray-100 rounded-full text-md text-gray-700"

@@ -4,13 +4,15 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Search } from "lucide-react";
 import React from "react";
+import { FormEvent } from "react";
+
 
 function SearchInput({initialValue}:{initialValue:string}) {
   console.log(initialValue)
   const [searchTerm, setSearchTerm] = useState<string>(initialValue)
   const router = useRouter()
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     router.push(`/search?q=${searchTerm}`)
   };
