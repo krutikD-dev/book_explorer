@@ -1,13 +1,12 @@
 "use client";
 
-import { BookCheck, BookOpenCheck, CalendarCheck, Heart } from "lucide-react";
-import React from 'react'
+import { Ban, BookCheck, BookOpenCheck, CalendarCheck, Heart } from "lucide-react";
+import React from "react";
 import { useContext } from "react";
 import { WishlistContext } from "../context/WishListContext";
 import { Book } from "../types/Books";
 
-function BookDetail({ book }:{book:Book}) {
-  
+function BookDetail({ book }: { book: Book }) {
   const { addToWishlist, removeFromWishlist, isInWishlist } =
     useContext(WishlistContext);
   const inWishlist = isInWishlist(book.id);
@@ -19,27 +18,42 @@ function BookDetail({ book }:{book:Book}) {
   return (
     <>
       <p className="text-gray-500 text-sm uppercase tracking-wide mb-8">
-        Books / {book.volumeInfo.categories?.[0] || "Category"} / {book.volumeInfo.title}
+        Books / {book.volumeInfo.categories?.[0] || "Category"} /{" "}
+        {book.volumeInfo.title}
       </p>
       <div className="grid grid-cols-1 gap-12 md:grid-cols-3 lg:gap-40">
         <div>
           <img
-            src={book.volumeInfo.imageLinks?.thumbnail || book.volumeInfo.imageLinks?.small}
+            src={
+              book.volumeInfo.imageLinks?.thumbnail ||
+              book.volumeInfo.imageLinks?.small
+            }
             alt={book.volumeInfo.title}
             className="rounded-2xl w-full object-cover shadow-md"
           />
-          <button className="bg-red-500 text-white flex border-none rounded-lg px-4 py-3 gap-2 font-bold w-full justify-center mt-4" onClick={toggleWishlist}>
-            <Heart
-              className={`transition ${
-                inWishlist ? "fill-red-500 text-red-500" : "fill-white"
-              }`}
-            />
-            Add To WishList
-          </button>
+          {inWishlist ? (
+            <button
+              className=" bg-amber-50 text-red-500 flex border-none rounded-lg px-4 py-3 gap-2 font-bold w-full justify-center mt-4"
+              onClick={toggleWishlist}
+            >
+              <Ban />
+              Remove From WishList
+            </button>
+          ) : (
+            <button
+              className="bg-red-500 text-white flex border-none rounded-lg px-4 py-3 gap-2 font-bold w-full justify-center mt-4"
+              onClick={toggleWishlist}
+            >
+              <Heart className="transition fill-white" />
+              Add To WishList
+            </button>
+          )}
         </div>
 
         <div className="md:col-span-2">
-          <h1 className="text-5xl mt-5 font-extrabold">{book.volumeInfo?.title}</h1>
+          <h1 className="text-5xl mt-5 font-extrabold">
+            {book.volumeInfo?.title}
+          </h1>
 
           <span className="text-lg text-red-500 font-medium mt-6 ml-2">
             by {book.volumeInfo?.authors || "unknown"}
@@ -105,14 +119,16 @@ function BookDetail({ book }:{book:Book}) {
               </h3>
 
               <div className="flex flex-wrap gap-3 mt-3">
-                {book.volumeInfo?.categories && book.volumeInfo?.categories.map((cat: string) => (
-                  <span
-                    key={cat}
-                    className="px-4 py-1 bg-gray-100 rounded-full text-md text-gray-700"
-                  >
-                    {cat}
-                  </span>
-                )) || "No Data Found"}
+                {(book.volumeInfo?.categories &&
+                  book.volumeInfo?.categories.map((cat: string) => (
+                    <span
+                      key={cat}
+                      className="px-4 py-1 bg-gray-100 rounded-full text-md text-gray-700"
+                    >
+                      {cat}
+                    </span>
+                  ))) ||
+                  "No Data Found"}
               </div>
             </div>
           )}
@@ -121,4 +137,4 @@ function BookDetail({ book }:{book:Book}) {
     </>
   );
 }
-export default React.memo(BookDetail)
+export default React.memo(BookDetail);
